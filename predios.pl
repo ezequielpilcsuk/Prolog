@@ -28,11 +28,11 @@ solution(1,Mx,Lr,Ud) :-
           [0,1]].
 
 problem(1,Mx,Lr,Ud) :-
-    Mx = [[5,3,1,4,2],
-          [1,2,3,5,4],
-          [3,4,5,2,1],
-          [4,5,2,1,3],
-          [2,1,4,3,5]],
+    Mx = [[_,_,_,_,_],
+          [_,_,_,_,_],
+          [_,_,_,_,_],
+          [_,_,_,_,_],
+          [_,_,_,_,_]],
     Lr = [[1,3],
           [4,2],
           [3,3],
@@ -46,6 +46,12 @@ problem(1,Mx,Lr,Ud) :-
         
 linhaTeste(1,[3,2,4,5,1], [3,2]).
 
+        % chamada para printar solução
+        % problem(666, Rows),
+        % sudoku(Rows),
+        % maplist(labeling([ff]), Rows),
+        % maplist(portray_clause, Rows).
+
 wolkenkratzer(Matrix,Lr,Ud) :- 
     puzzleSize(X),
     length(Matrix,X),maplist(same_length(Matrix), Matrix),
@@ -55,11 +61,6 @@ wolkenkratzer(Matrix,Lr,Ud) :-
     checkLines(Matrix,Lr),
     checkLines(MatrixT,Ud).
 
-% chamada para printar solução
-% problem(666, Rows),
-% sudoku(Rows),
-% maplist(labeling([ff]), Rows),
-% maplist(portray_clause, Rows).
 
 
 nPredios([],0,_).
@@ -78,7 +79,8 @@ checkLine(L,[C1,C2]) :-
 checkLines([],[]).
 checkLines([Row|T1],[Cond|T2]) :-checkLine(Row,Cond), checkLines(T1,T2).
 
-
+label(Col, Row, N) :- format("(~w) ~w ~w num\n", [N,Col,Row]).
+label(Col, Row, _) :- format("~w ~w clear\n", [Col,Row]), false.
 
 % solution(1,P) :-
 %         P = [linha(1,[5,3,1,4,2],3),
