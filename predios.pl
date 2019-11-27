@@ -6,16 +6,19 @@
 %     Pensando em usar outra estrutura de dados,
 %     passar uma matrix do jogo e duas listas de tuplas referentes aos prédios a serem vistos
 
+% Descobri que ele completa o jogo quando ele só encontra uma forma de preencher corretamente.
+% necessário, de alguma forma, caso encontre false, testar outro possivel m
+
 % game(Matrix,LeftRight,UpDown).
 puzzleSize(5).
 maxValue(5).
 
 solution(1,Mx,Lr,Ud) :-
-    Mx = [[5,3,1,4,2],
-          [1,2,3,5,4],
-          [3,4,5,2,1],
-          [4,5,2,1,3],
-          [2,1,4,3,5]],
+    Mx = [[_,3,1,4,2],
+          [1,_,3,5,4],
+          [3,4,_,2,1],
+          [4,5,2,_,3],
+          [2,1,4,3,_]],
     Lr = [[1,3],
           [4,2],
           [3,3],
@@ -28,11 +31,11 @@ solution(1,Mx,Lr,Ud) :-
           [0,1]].
 
 problem(1,Mx,Lr,Ud) :-
-    Mx = [[_,_,_,_,_],
+    Mx = [[5,3,1,4,2],
           [_,_,_,_,_],
-          [_,_,_,_,_],
-          [_,_,_,_,_],
-          [_,_,_,_,_]],
+          [3,4,5,2,1],
+          [_,_,2,1,3],
+          [2,1,4,3,5]],
     Lr = [[1,3],
           [4,2],
           [3,3],

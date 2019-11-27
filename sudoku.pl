@@ -100,6 +100,17 @@ problem(666,P) :-
              [_,_,8,5,_,_,_,1,_],
              [_,9,_,_,_,_,4,_,_]].
 
+
+show(Options, Rows) :-
+    sudoku(Rows),
+    open(pipe('gs -dNOPROMPT -g680x680 -dGraphicsAlphaBits=2 -r150 -q'),
+            write, Out, [buffer(false)]),
+    tell(Out),
+    phrase(postscript, Ps),
+    format(Ps),
+    append(Rows, Vs),
+    call_cleanup((animate(Rows),labeling(Options, Vs)), close(Out)).
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
    Examples:
 
